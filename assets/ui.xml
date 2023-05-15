@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>	
+    <!-- Menu inferior -->
+    <group id="menu_inferior"/>
+    <group id="move_menu"/>
+    <group id="prompt_lateral"/>
+    <group id="enemy_card"/>
+
+    <button id="btn_atacar" x="0" y="430" width="50" height="50" label="Atacar" group="menu_inferior"/>
+    <button id="btn_mochila" x="50" y="430" width="50" height="50" label="Mochila" group="menu_inferior"/>
+        <button id="btn_trocar" x="100" y="430" width="50" height="50" label="Trocar" group="menu_inferior"/>
+    <button id="btn_correr" x="150" y="430" width="50" height="50" label="Correr" group="menu_inferior"/>
+    
+    <button id="mv1" x="0" y="430" width="50" height="50" label="-" group="move_menu"/>
+    <button id="mv2" x="50" y="430" width="50" height="50" label="-" group="move_menu"/>
+    <button id="mv3" x="100" y="430" width="50" height="50" label="-" group="move_menu"/>
+    <button id="mv4" x="150" y="430" width="50" height="50" label="-" group="move_menu"/>
+
+    <text id="enemy_class" x="50" y="50" group="enemy_card"/>
+    <text id="enemy_level" x="150" y="50" group="enemy_card"/>
+    <bar id="enemy_hp" x="50" y="70" min="0" value="100" max="100" width="100" height="5" empty_color="0xff0000ff" group="enemy_card"/>
+</data>

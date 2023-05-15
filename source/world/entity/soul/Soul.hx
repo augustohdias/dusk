@@ -5,15 +5,17 @@ import battle.Move;
 import flixel.util.FlxColor;
 
 class Soul {
+	public var healthPercentage:Float = 100;
+
+	var totalHealth:Float = 10;
+	var health:Float = 10;
 	var level:Int;
 	var soulClass:SoulClass;
 	var soulElement:SoulElement;
 	var moveSet:List<Move>;
-
 	var physicalPower:Int = 10;
 	var magicalPower:Int = 10;
 	var speed:Int = 10;
-	var health:Float = 10;
 	var physicalDefense:Int = 1;
 	var magicalDefense:Int = 1;
 	var totalExperience:Int = 1;
@@ -52,6 +54,7 @@ class Soul {
 		}
 		trace('${this.soulClass} dealt $damage damage to ${target.soulClass}.');
 		target.health -= damage;
+		target.healthPercentage = (100 * target.health) / target.totalHealth;
 	}
 
 	public function getMoveSet():Array<Move> {
@@ -64,5 +67,13 @@ class Soul {
 
 	public function getHealth():Float {
 		return health;
+	}
+
+	public function getSoulClass():String {
+		return soulClass.getName();
+	}
+
+	public function getLevel():Int {
+		return level;
 	}
 }

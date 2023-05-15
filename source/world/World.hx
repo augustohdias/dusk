@@ -30,7 +30,7 @@ class World extends FlxState {
 		add(mapGroup);
 		add(playerGroup);
 		if (FlxG.camera != worldCamera) {
-			worldCamera = new FlxCamera(0, 0, 640, 480);
+			worldCamera = new FlxCamera(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 			worldCamera.follow(player.getPlayerSprite());
 			FlxG.cameras.reset(worldCamera);
 		}
