@@ -1,18 +1,17 @@
 package world.entity;
 
-import flixel.graphics.atlas.FlxAtlas;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.graphics.atlas.FlxAtlas;
 import world.entity.soul.Soul;
 
 class Player {
+	private var playerSprite:FlxSprite;
+	private var party:List<Soul> = new List<Soul>();
+	private var timeSinceLastMove:Float = 0;
+	private var moveOnCooldown:Bool = false;
 
-    private var playerSprite:FlxSprite;
-	private var party:List<Soul>;
-    private var timeSinceLastMove:Float = 0;
-    private var moveOnCooldown:Bool = false;
-
-    public function new() {
+	public function new() {
 		playerSprite = new FlxSprite(0, 0);
 		var atlas = new FlxAtlas("playerAtlas");
 
@@ -27,14 +26,14 @@ class Player {
 		playerSprite.animation.add('wright', [7, 6, 8, 6], 4, false);
 		playerSprite.animation.add('wup', [10, 9, 11, 9], 4, false);
 		playerSprite.facing = DOWN;
-    }
+	}
 
-    public function update(elapsed:Float) {
+	public function update(elapsed:Float) {
 		timeSinceLastMove += elapsed;
 
 		if (timeSinceLastMove > Constants.MOVE_COOLDOWN) {
 			moveOnCooldown = false;
-            if (FlxG.keys.pressed.LEFT) {
+			if (FlxG.keys.pressed.LEFT) {
 				playerSprite.animation.play('wleft');
 				playerSprite.x -= Constants.TILE_SIZE;
 				playerSprite.facing = LEFT;
@@ -57,29 +56,29 @@ class Player {
 			}
 			timeSinceLastMove -= Constants.MOVE_COOLDOWN;
 		}
-    }
+	}
 
-    public function isMoveOnCooldown():Bool {
-        return moveOnCooldown;
-    }
+	public function isMoveOnCooldown():Bool {
+		return moveOnCooldown;
+	}
 
-    public function stop() {
-        playerSprite.animation.stop();
-    }
+	public function stop() {
+		playerSprite.animation.stop();
+	}
 
-    public function getPlayerSprite():FlxSprite {
-        return playerSprite;
-    }
+	public function getPlayerSprite():FlxSprite {
+		return playerSprite;
+	}
 
 	public function getPlayerParty():List<Soul> {
 		return party;
 	}
 
-    public function getX():Int {
-        return Math.round(playerSprite.x/Constants.TILE_SIZE);
-    }
+	public function getX():Int {
+		return Math.round(playerSprite.x / Constants.TILE_SIZE);
+	}
 
 	public function getY():Int {
 		return Math.round(playerSprite.y / Constants.TILE_SIZE) + 1;
-    }
+	}
 }

@@ -1,8 +1,8 @@
 package world.entity.soul;
 
-import flixel.util.FlxColor;
-import battle.Move;
 import battle.Battle;
+import battle.Move;
+import flixel.util.FlxColor;
 
 class Soul {
 	var level:Int;
@@ -10,9 +10,9 @@ class Soul {
 	var soulElement:SoulElement;
 	var moveSet:List<Move>;
 
-	var physicalPower:Int = 1;
-	var magicalPower:Int = 1;
-	var speed:Int = 1;
+	var physicalPower:Int = 10;
+	var magicalPower:Int = 10;
+	var speed:Int = 10;
 	var health:Float = 10;
 	var physicalDefense:Int = 1;
 	var magicalDefense:Int = 1;
@@ -50,7 +50,7 @@ class Soul {
 			case MAGICAL:
 				(move.power / 100) * magicalPower;
 		}
-		trace('${this.soulClass} dealt $damage to ${target.soulClass}.');
+		trace('${this.soulClass} dealt $damage damage to ${target.soulClass}.');
 		target.health -= damage;
 	}
 
@@ -60,5 +60,9 @@ class Soul {
 			resp.insert(resp.length, move);
 		}
 		return resp;
+	}
+
+	public function getHealth():Float {
+		return health;
 	}
 }

@@ -37,7 +37,7 @@ class World extends FlxState {
 		player.update(elapsed);
 		if (shouldSpawnBattle(elapsed)) {
 			player.stop();
-			//openSubState(new Battle(player));
+			openSubState(new Battle(player));
 		}
 	}
 

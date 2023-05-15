@@ -1,13 +1,13 @@
 package battle;
 
-import flixel.group.FlxGroup;
-import world.entity.Player;
-import world.entity.soul.Soul;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
+import flixel.group.FlxGroup;
 import flixel.ui.FlxButton;
+import world.entity.Player;
+import world.entity.soul.Soul;
 
 class Battle extends FlxSubState {
 	private var battleCamera:FlxCamera;
@@ -40,6 +40,15 @@ class Battle extends FlxSubState {
 		add(enemySprite);
 
 		createFightMenu();
+		createMoveMenu();
+	}
+
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
+		if (enemy.getHealth() < 0) {
+			trace('Enemy fainted.');
+			close();
+		}
 	}
 
 	private function createFightMenu() {
@@ -54,8 +63,8 @@ class Battle extends FlxSubState {
 
 	private function createMoveMenu() {
 		final moveSet = playerParty.first().getMoveSet();
-		for (i in 1...moveSet.length) {
-			var button = new FlxButton(FlxG.width / (4/i), FlxG.height - 30, moveSet[i].getName(), function() {
+		for (i in 0...moveSet.length) {
+			var button = new FlxButton(FlxG.width / (4 / i + 1), FlxG.height - 30, moveSet[i].getName(), function() {
 				attack(moveSet[i]);
 			});
 			moveSetMenu.add(button);
